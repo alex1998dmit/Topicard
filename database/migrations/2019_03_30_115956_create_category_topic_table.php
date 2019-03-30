@@ -13,10 +13,16 @@ class CreateCategoryTopicTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_topic', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('category_topic')) {
+            Schema::create('category_topic', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->bigInteger('category_id')->unsigned();
+                $table->bigInteger('topic_id')->unsigned();
+                $table->foreign('category_id')->references('id')->on('categories');
+                $table->foreign('topic_id')->references('id')->on('topics');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

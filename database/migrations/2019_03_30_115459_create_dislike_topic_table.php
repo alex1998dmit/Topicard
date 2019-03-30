@@ -13,10 +13,17 @@ class CreateDislikeTopicTable extends Migration
      */
     public function up()
     {
-        Schema::create('dislike_topic', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('like_topic')) {
+            Schema::create('dislike_topic', function (Blueprint $table) {
+                $table->engine = 'MyISAM';
+                $table->bigIncrements('id');
+                $table->bigInteger('topic_id')->unsigned();
+                $table->bigInteger('dislike_id')->unsigned();
+                $table->foreign('topic_id')->references('id')->on('topics');
+                $table->foreign('dislike_id')->references('id')->on('dislikes');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

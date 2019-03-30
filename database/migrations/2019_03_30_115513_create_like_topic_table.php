@@ -13,10 +13,17 @@ class CreateLikeTopicTable extends Migration
      */
     public function up()
     {
-        Schema::create('like_topic', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('like_topic')) {
+            Schema::create('like_topic', function (Blueprint $table) {
+                $table->engine = 'MyISAM';
+                $table->bigIncrements('id');
+                $table->bigInteger('topic_id')->unsigned();
+                $table->bigInteger('like_id')->unsigned();
+                $table->foreign('topic_id')->references('id')->on('topics');
+                $table->foreign('like_id')->references('id')->on('likes');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

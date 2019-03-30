@@ -13,9 +13,16 @@ class CreateDislikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dislikes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        if (!Schema::hasTable('dislikes')) {
+            Schema::create('dislikes', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->bigInteger('user_id')->unsigned();
+                $table->timestamps();
+            });
+        }
+
+        Schema::table('dislikes', function($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
