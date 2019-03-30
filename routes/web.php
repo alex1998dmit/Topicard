@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Topic;
 use App\User;
+use App\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,17 @@ Auth::routes();
 
 Route::get('/topic/{id}', function(Request $request) {
     $topic = Topic::find($request->id);
-    dd($topic);
+    dd($topic->user);
 });
 
 Route::get('/user/{id}', function(Request $request) {
     $user = User::find($request->id);
-    dd($user->role);
+    dd($user->category);
+});
+
+Route::get('/category/{id}', function(Request $request) {
+    $category = Category::find($request->id);
+    dd($category->users);
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
