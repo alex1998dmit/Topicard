@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -33,7 +34,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a href="{{ route('topics') }}" class="nav-link">Topics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user', ['id' => Auth::id()]) }}" class="nav-link">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('categories') }}" class="nav-link">Categories</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -76,5 +85,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 </html>

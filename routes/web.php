@@ -22,19 +22,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/topic/{id}', function(Request $request) {
-    $topic = Topic::find($request->id);
-    dd($topic->user);
-});
+Route::get('/topic/{id}', 'TopicsController@show')->name('topic');
+Route::get('/topics', 'TopicsController@index')->name('topics');
+Route::get('/topics', 'TopicsController@index')->name('topics');
 
-Route::get('/user/{id}', function(Request $request) {
-    $user = User::find($request->id);
-    dd($user->category);
-});
 
-Route::get('/category/{id}', function(Request $request) {
-    $category = Category::find($request->id);
-    dd($category->users);
-});
+Route::get('/user/{id}', 'UsersController@show')->name('user');
+
+Route::get('/categories', 'CategoriesContoller@index')->name('categories');
+Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
 Route::get('/home', 'HomeController@index')->name('home');
