@@ -47,14 +47,4 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Topic');
     }
 
-    public function like()
-    {
-        return $this->hasMany('App\Like');
-    }
-
-    public function dislike()
-    {
-        return $this->hasMany('App\Dislike');
-    }
-
 }

@@ -16,16 +16,6 @@ class Topic extends Model
         return $this->belongsToMany('App\Category');
     }
 
-    public function like()
-    {
-        return $this->belongsToMany('App\Like');
-    }
-
-    public function dislike()
-    {
-        return $this->belongsToMany('App\Dislike');
-    }
-
     public function user()
     {
         return $this->belongsToMany('App\User');

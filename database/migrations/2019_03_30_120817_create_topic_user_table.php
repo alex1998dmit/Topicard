@@ -20,6 +20,9 @@ class CreateTopicUserTable extends Migration
                 $table->bigInteger('user_id')->unsigned();
                 $table->foreign('topic_id')->references('id')->on('topics');
                 $table->foreign('user_id')->references('id')->on('users');
+                $table->boolean('isLike')->default(0);
+                $table->boolean('isDislike')->default(0);
+                $table->boolean('isRepost')->default(0);
                 $table->timestamps();
             });
         }
