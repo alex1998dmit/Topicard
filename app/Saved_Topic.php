@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Saved_Topic extends Model
 {
     //
     protected $fillable = [
-        'name'
+        'user_id', 'topic_id'
     ];
 
     public function user()
