@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->bigInteger('usertype_id')->unsigned();
                 $table->string('name');
                 $table->string('avatar');
                 $table->string('email')->unique();
@@ -27,10 +26,6 @@ class CreateUsersTable extends Migration
                 $table->timestamps();
             });
         }
-
-        Schema::table('users', function($table) {
-            $table->foreign('usertype_id')->references('id')->on('user_types');
-        });
     }
 
     /**
