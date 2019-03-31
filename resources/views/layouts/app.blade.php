@@ -81,9 +81,9 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <div class="container">
             @yield('content')
-        </main>
+        </div>
     </div>
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>

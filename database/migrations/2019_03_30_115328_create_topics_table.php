@@ -13,15 +13,15 @@ class CreateTopicsTable extends Migration
      */
     public function up()
     {
-        
+
         if (!Schema::hasTable('topics')) {
             Schema::create('topics', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('user_id')->unsigned();
                 $table->bigInteger('category_id')->unsigned();
+                $table->string('title');
                 $table->text('content');
-                $table->integer('likes');
-                $table->integer('dislikes');
+                $table->integer('rating')->default(0);
                 $table->timestamps();
             });
         }

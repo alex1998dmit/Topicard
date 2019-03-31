@@ -14,7 +14,7 @@ class Category extends Model
         return $this->belongsToMany('App\Topic');
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsToMany('App\User');
     }

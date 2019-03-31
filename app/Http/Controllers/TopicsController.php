@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use App\Category;
+use App\User;
+use Auth;
 
 class TopicsController extends Controller
 {
@@ -27,6 +30,9 @@ class TopicsController extends Controller
     public function create()
     {
         //
+        $user_id =  Auth::user()->id;
+        $categories = User::find($user_id)->category()->get();
+        return view('topics.create')->with('categories', $categories);
     }
 
     /**

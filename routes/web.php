@@ -24,7 +24,8 @@ Auth::routes();
 
 Route::get('/topic/{id}', 'TopicsController@show')->name('topic');
 Route::get('/topics', 'TopicsController@index')->name('topics');
-Route::get('/topics', 'TopicsController@index')->name('topics');
+Route::get('/topics/create', 'TopicsController@create')->name('topics');
+Route::post('/topics', 'TopicsController@store')->name('topic.store');
 
 
 Route::get('/user/{id}', 'UsersController@show')->name('user');
