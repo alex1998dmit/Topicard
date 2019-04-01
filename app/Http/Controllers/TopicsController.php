@@ -10,11 +10,17 @@ use Auth;
 
 class TopicsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         //
@@ -45,6 +51,21 @@ class TopicsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'categories' => 'required'
+         ]);
+
+         $topic = Topic::create([
+             'title' => $request->title,
+             'content' => $request->content,
+             'user_id' => Auth::id(),
+         ]);
+
+
+         $topic->category()->attach($request->categories);
+         return redirect()->back();
     }
 
     /**

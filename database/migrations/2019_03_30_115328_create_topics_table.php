@@ -18,7 +18,6 @@ class CreateTopicsTable extends Migration
             Schema::create('topics', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->bigInteger('user_id')->unsigned();
-                $table->bigInteger('category_id')->unsigned();
                 $table->string('title');
                 $table->text('content');
                 $table->integer('rating')->default(0);
@@ -28,7 +27,6 @@ class CreateTopicsTable extends Migration
 
         Schema::table('topics', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

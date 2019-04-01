@@ -4,20 +4,19 @@
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-12">
-                        <div class="form-group">
-                            <label for=""></label>
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div id="searchfield">
+                        <div class="form-group" id="search_categories">
+                            <label for="categories_search">Выберите категорию</label>
                             <input type="text" name="search" id="categories_search" class="form-control" placeholder="Введите название категории" />
                         </div>
                         <div class="checkboxes" id="checkboxes">
-
                         </div>
                 </div>
             </div>
             <hr>
+            <div class="form-group">
+                    <label for="title">Title</label>
+                    <input name="title" id="title" class="form-control">
+                </div>
             <div class="row col-md-12">
                 <div class="row">
                     <div class="form-group">

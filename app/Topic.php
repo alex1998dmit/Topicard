@@ -8,7 +8,7 @@ class Topic extends Model
 {
     //
     protected $fillable = [
-        'category_id', 'user_id', 'content', 'likes', 'dislikes',
+         'user_id', 'content', 'title',
     ];
 
     public function category()
