@@ -15,14 +15,15 @@ class LikesController extends Controller
             'topic_id' => $id,
             'user_id' => Auth::id(),
         ]);
-
-        return json_encode($like);
+        $topic = Topic::find($id);
+        return json_encode(['likes' => $topic->likes->count()]);
     }
 
     public function dislike($id)
     {
         $like = Like::where('topic_id', $id)->where('user_id', Auth::id())->first();
         $like->delete();
-        return json_encode([]);
+        $topic = Topic::find($id);
+        return json_encode(['likes' => $topic->likes->count()]);
     }
 }

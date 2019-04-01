@@ -47,7 +47,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(data) {
                  $('#rating').html(`
-                    <input type="submit" value="like" class="btn btn-success" id="like_button" />
+                    <input type="submit" value="like" class="btn btn-success" id="like_button" />${data.likes}
                 `);
                 console.log(data);
             },
@@ -64,7 +64,7 @@ $(document).ready(function(){
             success: function(data) {
                 console.log(data);
                  $('#rating').html(`
-                    <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button" />
+                    <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button" />${data.likes}
                 `);
             },
         });

@@ -18,9 +18,9 @@
                 <div class="rating" id="rating">
                         @if($topic->is_liked_by_auth())
                         {{-- <a href="{{ route('topic.dislike', ['id' => $topic->id]) }}" class="btn btn-danger" id="unlike_button">Unlike <span class="badge">{{ $topic->likes->count() }}</span></a> --}}
-                            <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button"> <span class="badge">{{ $topic->likes->count() }}</span>
+                            <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button">{{ $topic->likes->count() }}
                     @else
-                            <input type="submit" value="like" class="btn btn-success" id="like_button"> <span class="badge">{{ $topic->likes->count() }}</span>
+                            <input type="submit" value="like" class="btn btn-success" id="like_button">{{ $topic->likes->count() }}
                     @endif
                 </div>
             </div>
