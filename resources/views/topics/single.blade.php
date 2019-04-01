@@ -15,17 +15,11 @@
                 @endforeach
             </div>
             <div class="col-md-12">
-                    <label for="">Полезная статья ?</label>
-                    <div>
-                        <label for=""><input type="radio" id="like" name="liked" value="true">
-                            Полезно
-                        </label>
-                    <div>
-                    <div class="likes_dislike" id="likes_dislike">
-                        <label for=""><input type="radio" id="like" name="liked" value="false">
-                            Не полезно
-                        </label>
-                    </div>
+                @if($topic->is_liked_by_auth())
+                    <a href="{{ route('topic.dislike', ['id' => $topic->id]) }}" class="btn btn-danger">Unlike <span class="badge">{{ $topic->likes->count() }}</span></a>
+                @else
+                    <a href="{{ route('topic.like', ['id' => $topic->id]) }}" class="btn btn-success">Like <span class="badge">{{ $topic->likes->count() }}</span></a>
+                @endif
             </div>
         </div>
     </div>

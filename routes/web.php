@@ -41,4 +41,5 @@ Route::get('/topics/create/search', function(Request $request) {
     return json_encode($categories);
 })->name('topics.search');
 
-
+Route::get('/topic/like/{id}', 'LikesController@like')->name('topic.like');
+Route::get('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
