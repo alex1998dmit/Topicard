@@ -15,14 +15,21 @@
                 @endforeach
             </div>
             <div class="col-md-12">
-                @if($topic->is_liked_by_auth())
-                    <a href="{{ route('topic.dislike', ['id' => $topic->id]) }}" class="btn btn-danger">Unlike <span class="badge">{{ $topic->likes->count() }}</span></a>
-                @else
-                    <a href="{{ route('topic.like', ['id' => $topic->id]) }}" class="btn btn-success">Like <span class="badge">{{ $topic->likes->count() }}</span></a>
-                @endif
+                <div class="rating" id="rating">
+                        @if($topic->is_liked_by_auth())
+                        {{-- <a href="{{ route('topic.dislike', ['id' => $topic->id]) }}" class="btn btn-danger" id="unlike_button">Unlike <span class="badge">{{ $topic->likes->count() }}</span></a> --}}
+                            <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button"> <span class="badge">{{ $topic->likes->count() }}</span>
+                    @else
+                            <input type="submit" value="like" class="btn btn-success" id="like_button"> <span class="badge">{{ $topic->likes->count() }}</span>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        let url_dislike = "{{ route('topic.dislike', ['id' => $topic->id]) }}";
+        let url_like = "{{ route('topic.like', ['id' => $topic->id]) }}";
+    </script>
 
     @endsection
 
