@@ -39,9 +39,6 @@ Route::get('/topics/create/search', function(Request $request) {
     $searchTerm =  $request->get('name');
     $categories = Category::where('name','LIKE','%'.$searchTerm.'%')->get();
     return json_encode($categories);
-    // echo json_encode($categories);
 })->name('topics.search');
 
-Route::get('/test', function() {
-    return 123;
-})->name('test');
+

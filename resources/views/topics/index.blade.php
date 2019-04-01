@@ -24,6 +24,9 @@
                             {{ $category->name }}
                         @endforeach
                     </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('topic', ['id' => $topic->id]) }}">Посмотреть</a>
+                    </div>
                 </div>
             @endforeach
         </div>
