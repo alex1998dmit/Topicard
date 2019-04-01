@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Topic;
+use DB;
 use App\Category;
-use App\User;
-use Auth;
 
-class TopicsController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,6 @@ class TopicsController extends Controller
     public function index()
     {
         //
-        $topics = Topic::all();
-        return view('topics.index')->with('topics', $topics);
     }
 
     /**
@@ -30,10 +26,6 @@ class TopicsController extends Controller
     public function create()
     {
         //
-        $user_id =  Auth::user()->id;
-        $categories = Category::all();
-        // $categories = User::find($user_id)->category()->get();
-        return view('topics.create')->with('categories', $categories);
     }
 
     /**
@@ -55,7 +47,7 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        $topic = Topic::find($request->id);
+        //
     }
 
     /**
@@ -90,5 +82,10 @@ class TopicsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    function action(Request $request)
+    {
+        return 123;
     }
 }

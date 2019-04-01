@@ -34,3 +34,14 @@ Route::get('/categories', 'CategoriesContoller@index')->name('categories');
 Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/topics/create/search', function(Request $request) {
+    $searchTerm =  $request->get('name');
+    $categories = Category::where('name','LIKE','%'.$searchTerm.'%')->get();
+    return json_encode($categories);
+    // echo json_encode($categories);
+})->name('topics.search');
+
+Route::get('/test', function() {
+    return 123;
+})->name('test');
