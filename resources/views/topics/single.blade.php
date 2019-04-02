@@ -31,7 +31,6 @@
                                  <input type="submit" value="saved" class="btn btn-info" id="unrepost_button">{{ $topic->reposts->count() }}
                             @else
                                 <a href="{{ route('topic.repost', ['id' => $topic->id]) }}" class="btn btn-danger" id="repost_button">Saved <span class="badge">{{ $topic->likes->count() }}</span></a>
-
                                 {{-- <input type="submit" value="save" class="btn btn-info" id="repost_button">{{ $topic->reposts->count() }} --}}
                             @endif
                     </div>
@@ -48,6 +47,66 @@
 
         let url_unrepost = "{{ route('topic.unrepost', ['id' => $topic->id]) }}";
         let url_repost = "{{ route('topic.repost', ['id' => $topic->id]) }}";
+        let disable = false;
+
+        $(document).ready(function(){
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+
+            $(document).on("click", '#unlike_button', function(){
+                disable = true;
+                $.ajax({
+                    url:url_dislike,
+                    type: 'POST',
+                    data:{_token: CSRF_TOKEN },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#rating').html(`
+                            <input type="submit" value="like" class="btn btn-success" id="like_button" />${data.likes}
+                        `);
+                        disable = false;
+                    },
+                });
+                return false;
+            });
+
+            $(document).on("click", '#like_button', function(){
+                disable = true;
+                $.ajax({
+                    url:url_like,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#rating').html(`
+                            <input type="submit" value="unlike" class="btn btn-danger" id="unlike_button" />${data.likes}
+                        `);
+                        disable = false;
+                    },
+                });
+                return false;
+            });
+
+            $(document).on("click", '#like_button', function(){
+                if(disable) {
+                    $('#like_button').hide();
+                }
+            });
+
+            $(document).on("click", '#unlike_button', function(){
+                if(disable) {
+                    $('#unlike_button').hide();
+                }
+            });
+
+        });
     </script>
 
     @endsection
