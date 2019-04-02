@@ -7,13 +7,9 @@
                     <div class="col-md-1">
                         {{$topic ->title }}
                     </div>
-                    <div class="col-md-1">
-                        {{$topic ->rating }}
-                    </div>
-
                     <div class="col-md-2">
-                        {{$topic ->created_at}}
-                    </div>
+                            {{$topic ->created_at}}
+                        </div>
                     <div class="col-md-2">
                         @foreach($topic->user as $user)
                             {{ $user->name }}

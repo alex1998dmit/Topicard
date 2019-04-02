@@ -35,7 +35,11 @@
                                 {{-- <input type="submit" value="save" class="btn btn-info" id="repost_button">{{ $topic->reposts->count() }} --}}
                             @endif
                     </div>
-                </div>
+            </div>
+            <div class="col-md-12">
+                <b>Author: </b> {{ $topic->user }}
+                <img src="" alt="">
+            </div>
         </div>
     </div>
     <script>

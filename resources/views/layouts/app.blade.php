@@ -49,8 +49,16 @@
                             <a href="{{ route('categories') }}" class="nav-link">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <form class="form-inline">
-                                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" id="search_categories">
+                            <form action="{{ route('search.test') }}" method="get" role="search">
+                                {{ csrf_field() }}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="search" id="search_form"
+                                        placeholder="Найти"> <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                                </div>
                             </form>
                         </li>
                     </ul>
@@ -98,27 +106,23 @@
     <script>
         $(document).ready(function(){
             let url_search_topics = "{{  route('topics.search') }}";
-            $(document).on('keyup', '#search_categories', function(){
+            $(document).on('keyup', '#search_form', function(){
                 var query = $(this).val();
                 let results;
-                console.log(query);
                 $.ajax({
                     url:url_search_topics,
                     type: 'GET',
                     data:{ name: query },
                     dataType: 'json',
-                    delay: 200,
                     success: function(data) {
-                        console.log(data);
                         let arrayResult = data.map(el => el.title);
                         if(arrayResult.length) {
-                            $('#search_categories').autocomplete({
+                            $('#search_form').autocomplete({
                                 source: arrayResult,
                                 select: function( event, ui ) {
                                     let selected_tag = ui.item.value;
                                     let selected = data.filter(el =>  {return el.title === selected_tag });
                                     let selected_id = selected[0].id;
-                                    console.log()
                                     window.location.replace(`http://localhost:8888/topicard/public/topic/${selected_id}`);
                                 },
                             })
