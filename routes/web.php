@@ -41,9 +41,9 @@ Route::get('/topics/create/search', function(Request $request) {
     return json_encode($categories);
 })->name('topics.search');
 
-Route::post('/topic/like', function(Request $request) {
-
-});
 
 Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
 Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
+
+Route::post('/topic/repost/{id}', 'RepostsController@repost')->name('topic.repost');
+Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');

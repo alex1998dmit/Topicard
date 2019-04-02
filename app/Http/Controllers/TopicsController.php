@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Topic;
 use App\Category;
 use App\User;
+use App\Like;
 use Auth;
 
 class TopicsController extends Controller
