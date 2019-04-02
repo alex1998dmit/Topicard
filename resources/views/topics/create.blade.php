@@ -33,7 +33,44 @@
         </form>
 
         <script>
-            let url = "{{ route('categories.search') }}";
+            $(document).ready(function(){
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                let url = "{{ route('categories.search') }}";
+                let added_categories = [];
+
+                $(document).on('keyup', '#categories_search', function(){
+                    var query = $(this).val();
+                    $.ajax({
+                        url:url,
+                        type: 'GET',
+                        data:{ name: query },
+                        dataType: 'json',
+                        delay: 200,
+                        success: function(data) {
+                            let arrayResult = data.map(el => el.name);
+                            if(arrayResult.length) {
+                                $('#categories_search').autocomplete({
+                                    source: arrayResult,
+                                    select: function( event, ui ) {
+                                        let selected = data.find(x => x.name === ui.item.value);
+                                        if(!added_categories.includes(selected.name)) {
+                                            $('#checkboxes').append(`<input type="checkbox" id="" name="categories[]" value="${selected.id}" checked/>${selected.name}<br />`);
+                                            added_categories.push(selected.name);
+                                        }
+                                    },
+                                })
+                            }
+                        },
+                    });
+                });
+            });
         </script>
     @endsection
 

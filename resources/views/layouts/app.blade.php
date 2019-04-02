@@ -48,23 +48,23 @@
                         <li class="nav-item">
                             <a href="{{ route('categories') }}" class="nav-link">Categories</a>
                         </li>
-                        <li class="nav-item">
-                            <form action="{{ route('search.test') }}" method="get" role="search">
-                                {{ csrf_field() }}
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" id="search_form"
-                                        placeholder="Найти"> <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                                <form action="{{ route('search.test') }}" method="get" role="search">
+                                    {{ csrf_field() }}
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search" id="search_form"
+                                            placeholder="Найти"> <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
