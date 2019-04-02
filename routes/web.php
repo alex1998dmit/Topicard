@@ -27,6 +27,16 @@ Route::get('/topics', 'TopicsController@index')->name('topics');
 Route::get('/topics/create', 'TopicsController@create')->name('topics');
 Route::post('/topics', 'TopicsController@store')->name('topic.store');
 
+Route::get('/topics/search', function(Request $request) {
+    $searchTerm =  $request->get('name');
+    $topics = Topic::where('title','LIKE','%'.$searchTerm.'%')->get();
+    return json_encode($topics);
+})->name('topics.search');
+
+Route::get('/search', function(Request $request) {
+    return view();
+})->name('topics.search.index');
+
 
 Route::get('/user/{id}', 'UsersController@show')->name('user');
 
@@ -39,7 +49,8 @@ Route::get('/topics/create/search', function(Request $request) {
     $searchTerm =  $request->get('name');
     $categories = Category::where('name','LIKE','%'.$searchTerm.'%')->get();
     return json_encode($categories);
-})->name('topics.search');
+})->name('categories.search');
+
 
 
 Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');

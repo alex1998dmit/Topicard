@@ -33,7 +33,7 @@
         </form>
 
         <script>
-            let url = "{{ route('topics.search') }}";
+            let url = "{{ route('categories.search') }}";
         </script>
     @endsection
 
