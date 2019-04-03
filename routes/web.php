@@ -5,7 +5,8 @@ use App\Topic;
 use App\User;
 use App\Category;
 use App\Repost;
-
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,7 +66,17 @@ Route::get('/user/{id}', 'UsersController@show')->name('user');
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/index', 'AdminController@index')->name('admin.index');
     Route::get('/admin/categories', 'CategoriesController@index')->name('admin.categories');
-    Route::post('/admin/categories/store', 'CategoriesController@store')->name('categories.store');
+    Route::post('/admin/categories/store', function(Request $request) {
+        $name = Input::get('name');
+        $avatar = Input::file('image');
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/categories_avatars/' . $filename));
+        $category  = Category::create([
+            'name' => $name,
+            'avatar' => $filename,
+        ]);
+        return json_encode($category);
+    })->name('categories.store');
 });
 
 // Route::get('/topic/{id}', function(Request $request) {
