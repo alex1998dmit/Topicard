@@ -3,3 +3,67 @@
   height: 100%;
   object-fit: contain;
 }
+
+.topic-card {
+  position: relative;
+  border: 1px solid #ECEDF0;
+  border-radius: 5px;
+}
+
+.topic-card:hover {
+  background-color: #ddd;
+}
+
+.topic-card:hover .topic-card__btn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility ease-in 300ms, opacity ease-in 300ms;
+}
+
+.topic-card__btn {
+  position: relative;
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility ease-in 300ms, opacity ease-in 300ms;
+}
+
+.topic__more:hover {
+  text-decoration: none;
+}
+
+.topic-card__edit {
+  color: #fff;
+}
+
+.topic-card__date {
+  font-size: 0.7rem;
+  color: lightslategrey;
+}
+
+.topic-card__category {
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.topic-card__link {
+  position: relative;
+  z-index: 1;
+  color: lightslategrey;
+}
+
+.topic-card__text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.block-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
