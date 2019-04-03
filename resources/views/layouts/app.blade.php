@@ -55,7 +55,7 @@
                             <form action="{{ route('search.test') }}" method="get" role="search">
                                 {{ csrf_field() }}
                                     <div class="input-group">
-                                        <input class="form-control" placeholder="{{ __('Поиск топика') }}" type="email" name="search" id="search_form">
+                                        <input class="form-control" placeholder="{{ __('Поиск топика') }}" type="text" name="search" id="search_form">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn">Найти</button>
                                         </div>
