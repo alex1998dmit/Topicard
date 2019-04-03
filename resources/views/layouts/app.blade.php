@@ -57,7 +57,7 @@
                                     <div class="input-group">
                                         <input class="form-control" placeholder="{{ __('Поиск топика') }}" type="text" name="search" id="search_form">
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn">Найти</button>
+                                            <button type="submit" class="btn search-button">Найти</button>
                                         </div>
                                     </div>
                             </form>
