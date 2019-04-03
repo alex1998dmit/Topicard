@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Category');
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }

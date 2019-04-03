@@ -42,5 +42,13 @@ Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware(['auth', 'admin'])->group(function() {
+    Route::get('/admin/index', function() {
+        return view('admin.index');
+    })->name('admin.index');
+});
+
+
+
 
 

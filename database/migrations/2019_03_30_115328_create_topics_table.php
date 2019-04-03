@@ -20,7 +20,6 @@ class CreateTopicsTable extends Migration
                 $table->bigInteger('user_id')->unsigned();
                 $table->string('title');
                 $table->text('content');
-                $table->integer('rating')->default(0);
                 $table->timestamps();
             });
         }
