@@ -8,9 +8,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-12" id="search_categories">
+                <div class="form-group col-12 mb-0" id="search_categories">
                     <input type="text" name="search" id="categories_search" class="form-control" placeholder="Введите название категории" />
-                    <div class="checkboxes" id="checkboxes"></div>
+                    <div class="mt-2 checkboxes" id="checkboxes"></div>
                 </div>
             </div>
             <hr class="w-100">
@@ -56,7 +56,7 @@
                                     select: function( event, ui ) {
                                         let selected = data.find(x => x.name === ui.item.value);
                                         if(!added_categories.includes(selected.name)) {
-                                            $('#checkboxes').append(`<input type="checkbox" id="" name="categories[]" value="${selected.id}" checked/>${selected.name}<br />`);
+                                            $('#checkboxes').append(`<input class="mr-2" type="checkbox" id="" name="categories[]" value="${selected.id}" checked/>${selected.name}<br />`);
                                             added_categories.push(selected.name);
                                         }
                                     },
