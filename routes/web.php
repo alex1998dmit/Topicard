@@ -29,6 +29,9 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
     Route::post('/topic/repost/{id}', 'RepostsController@repost')->name('topic.repost');
     Route::post('/topics', 'TopicsController@store')->name('topic.store');
+    Route::get('/home', function() {
+        return redirect()->route('user', ['id' => Auth::user()->id]);
+    })->name('home');
 });
 
 Route::get('/topic/{id}', 'TopicsController@show')->name('topic');
@@ -38,17 +41,15 @@ Route::get('/topics/create/search', 'SearchController@search_categories_api')->n
 Route::get('/topics/search', 'SearchController@search_api')->name('topics.search');
 Route::any('/search','SearchController@search_index')->name('search.test');
 
-Route::get('/user/{id}', 'UsersController@show')->name('user');
-
 Route::get('/categories', 'CategoriesContoller@index')->name('categories');
 Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/{id}', 'UsersController@show')->name('user');
+
+
 
 Route::middleware(['auth', 'admin'])->group(function() {
-    Route::get('/admin/index', function() {
-        return view('admin.index');
-    })->name('admin.index');
+    Route::get('/admin/index', 'AdminController@index')->name('admin.index');
 });
 
 
