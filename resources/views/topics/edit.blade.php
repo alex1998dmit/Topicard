@@ -59,7 +59,7 @@
                                 select: function( event, ui ) {
                                     let selected = data.find(x => x.name === ui.item.value);
                                     if(!added_categories.includes(selected.name)) {
-                                        $('#checkboxes').append(`<input type="checkbox" id="" name="categories[]" value="${selected.id}" checked/>${selected.name}<br />`);
+                                        $('#checkboxes').append(`<input class="mr-2" type="checkbox" id="" name="categories[]" value="${selected.id}" checked/>${selected.name}<br />`);
                                         added_categories.push(selected.name);
                                     }
                                 },
