@@ -1,6 +1,6 @@
 @extends('layouts.app')
     @section('content')
-        <form action="{{ route('topic.store') }}" method="post">
+        <form action="{{ route('topic.update', ['id' => $topic->id]) }}" method="post">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-12">

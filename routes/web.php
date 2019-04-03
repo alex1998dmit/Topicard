@@ -25,15 +25,11 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
-<<<<<<< HEAD
-    Route::get('/topics/create', 'TopicsController@create')->name('topics');
+    Route::get('/topics/create', 'TopicsController@create')->name('topics.create');
     Route::post('/topics', 'TopicsController@store')->name('topic.store');
     Route::get('/topics/edit/{id}', 'TopicsController@edit')->name('topic.edit');
-    Route::post('/topics/update', 'TopicsContoller@update')->name('topic.update');
+    Route::post('/topics/update', 'TopicsController@update')->name('topic.update');
 
-=======
-    Route::get('/topics/create', 'TopicsController@create')->name('topics.create');
->>>>>>> 0bb2b9d5a7abaaba5296a08ef9629516d76be38d
     Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
     Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
 
