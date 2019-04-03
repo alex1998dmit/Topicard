@@ -59,3 +59,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/categories', 'CategoriesController@index')->name('admin.categories');
     Route::post('/admin/categories/store', 'CategoriesController@store')->name('categories.store');
 });
+
+// Route::get('/topic/{id}', function(Request $request) {
+//     return view('topics.single', ['id' => $request->id]);
+// });

@@ -27,6 +27,11 @@ class Topic extends Model
         return $this->hasMany('App\Repost');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function is_reposted_by_auth()
     {
         $id = Auth::id();
