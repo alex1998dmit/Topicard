@@ -5,7 +5,7 @@
       <h2 class="col h3 col topic-card__title mb-1 text-restriction">{{ $topic->title }}</h2>
       <!-- guest and user id -->
       <div class="col-auto justify-self-end topic-card__buttons">
-        <a class="btn btn-info topic-card__btn topic-card__edit" href="#">Редактировать</a>
+        <a class="btn btn-info topic-card__btn topic-card__edit" href="{{ route('topic.edit', ['id' => $topic->id ])}}">Редактировать</a>
         <a class="btn btn-danger topic-card__btn topic-card__delete" href="#">Удалить</a>
       </div>
     </div>
