@@ -24,10 +24,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row topics__saved">
+            <div class="row topics__saved mb-3">
                 <h2 class="col">Сохраненные топики:</h2>
             </div>
-            <div class="row topics__categories">
+            <div class="row topics__categories mb-3">
                 <h2 class="col">Избранные категории:</h2>
             </div>
         </div>
