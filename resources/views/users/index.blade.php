@@ -1,61 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <!-- <div class="row">
-        <div class="col-md-6">
-            <div class="col-md-12">
-                <img src="{{asset('uploads/avatars/'. $user->avatar)}}" alt="avatar">
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {{ $user->name}}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    {{ $user->email}}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    {{ $user->role }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-
-                    Карма: {{ $likes }}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    Топики:
-                        @foreach ($topics as $topic)
-                            {{ $topic->title }}
-                        @endforeach
-                </div>
-            </div>
-            {{-- <div class="row">
-                <div class="col-md-12">
-                    Сохраненные топики:
-                        @foreach ($topics as $topic)
-                            {{ $topic->title }}
-                        @endforeach
-                </div>
-            </div> --}}
-            <div class="row">
-                <div class="col-md-12">
-                    Вы подписаны на следующие категории:
-                        @foreach ($topics as $topic)
-                            {{ $topic->title }}
-                        @endforeach
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="row mt-5">
         <div class="col-sm-3">
             <div class="row position-sticky">
@@ -67,17 +11,15 @@
                 <span class="h5">Карма: {{ $user->linkes }}</span>
             </div>
         </div>
-        <div class="col-sm-9">
-            <div class="row topics__all">
+        <div class="col-sm-9 pl-4">
+            <div class="row topics__all mb-3">
                 <h2 class="col">Ваши топики:</h2>
                 <div class="row">
-                    <div class="col-md-12">
-                        @foreach ($topics as $topic)
-                            {{ $topic->title }}
-                            @foreach ($topic->category as $category)
-                                {{ $category->name }}
-                            @endforeach
-                            {{ $topic->created_at }}
+                    <div class="col">
+                        @foreach($topics as $topic)
+                            <div class="col">
+                                @include('components.topic-card', ['topic' => $topic])
+                            </div>
                         @endforeach
                     </div>
                 </div>
