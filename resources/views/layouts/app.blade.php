@@ -51,19 +51,17 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                                <form action="{{ route('search.test') }}" method="get" role="search">
-                                    {{ csrf_field() }}
+                        <li class="nav-item mr-4">
+                            <form action="{{ route('search.test') }}" method="get" role="search">
+                                {{ csrf_field() }}
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="search" id="search_form"
-                                            placeholder="Найти"> <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-default" aria-label="Left Align">
-                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                            </button>
-                                        </span>
+                                        <input class="form-control" placeholder="{{ __('Поиск топика') }}" type="email" name="search" id="search_form">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn">Найти</button>
+                                        </div>
                                     </div>
-                                </form>
-                            </li>
+                            </form>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
