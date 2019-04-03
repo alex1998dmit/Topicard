@@ -25,18 +25,26 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/topics/create', 'TopicsController@create')->name('topics');
+    Route::post('/topics', 'TopicsController@store')->name('topic.store');
+
     Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
     Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
-    Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
-    Route::post('/topic/repost', function(Request $request) {
+
+    Route::post('/topic/save', function(Request $request) {
         $id = $request['id'];
         $repost = Repost::create([
             'topic_id' => $id,
             'user_id' => Auth::id(),
         ]);
         return json_encode([]);
-    })->name('topic.repost');
-    Route::post('/topics', 'TopicsController@store')->name('topic.store');
+    })->name('topic.save');
+    Route::post('/topic/notsave', function(Request $request) {
+        $id = $request['id'];
+        $repost = Repost::where('topic_id', $id)->where('user_id', Auth::id())->first();
+        $repost->delete();
+        return json_encode([]);
+    })->name('topic.notsave');
+
     Route::get('/home', function() {
         return redirect()->route('user', ['id' => Auth::user()->id]);
     })->name('home');

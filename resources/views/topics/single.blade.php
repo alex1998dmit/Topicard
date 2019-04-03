@@ -43,7 +43,8 @@
         let url_dislike = "{{ route('topic.dislike', ['id' => $topic->id]) }}";
         let url_like = "{{ route('topic.like', ['id' => $topic->id]) }}";
 
-        let test_url = "{{ route('topic.repost') }} ";
+        let url_save = "{{ route('topic.save') }} ";
+        let url_notsave= "{{ route('topic.notsave') }} ";
         let token = '{{ Session::token() }}';
         let id = '{{ $topic->id }}';
         let disable = false;
@@ -61,12 +62,11 @@
             $(document).on("click", '#repost_button', function(){
                 disable = true;
                 $.ajax({
-                    url:test_url,
+                    url:url_save,
                     type: 'POST',
                     data:{ id: id, _token: CSRF_TOKEN },
                     dataType: 'json',
                     success: function(data) {
-                        console.log(data);
                         $('#reposts').html(`
                             <input type="submit" value="Saved" class="btn btn-info" id="unrepost_button" />
                         `);
@@ -79,12 +79,11 @@
             $(document).on("click", '#unrepost_button', function(){
                 disable = true;
                 $.ajax({
-                    url:test_url,
+                    url:url_notsave,
                     type: 'POST',
                     data:{ id: id, _token: CSRF_TOKEN },
                     dataType: 'json',
                     success: function(data) {
-                        console.log(data);
                         $('#reposts').html(`
                             <input type="submit" value="Press to save" class="btn btn-info" id="repost_button" />
                         `);
