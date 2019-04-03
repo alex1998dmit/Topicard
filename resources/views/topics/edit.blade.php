@@ -23,7 +23,7 @@
             <div class="row col-md-12">
                 <div class="row">
                     <div class="form-group">
-                    <textarea name="content" id="content" cols="150" rows="20" placeholder="Содержание топика" class="form-control">{{ $topic->content }} </textarea>
+                        <textarea name="content" id="content" cols="150" rows="20" placeholder="Содержание топика" class="form-control">{{ $topic->content }} </textarea>
                     </div>
                 </div>
             </div>
