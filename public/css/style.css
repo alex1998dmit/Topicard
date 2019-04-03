@@ -4,6 +4,35 @@
     object-fit: contain;
 }
 
+.block-category {
+  position: relative;
+  border: 1px solid #ECEDF0;
+  border-radius: 5px;
+}
+
+.block-category:hover {
+  background-color: #ddd;
+}
+
+.block-category__image {
+  height: 100px;
+  object-fit: contain;
+}
+
+.block-category:hover .block-category__btn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility ease-in 300ms, opacity ease-in 300ms;
+}
+
+.block-category__btn {
+  position: relative;
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility ease-in 300ms, opacity ease-in 300ms;
+}
+
 .topic-card {
   position: relative;
   border: 1px solid #ECEDF0;
@@ -53,7 +82,7 @@
   color: lightslategrey;
 }
 
-.topic-card__text {
+.text-restriction {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

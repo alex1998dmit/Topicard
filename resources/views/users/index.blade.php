@@ -13,13 +13,11 @@
         </div>
         <div class="col-sm-9 pl-4">
             <div class="row topics__all mb-3">
-                <h2 class="col">Ваши топики:</h2>
-                <div class="row">
-                    <div class="col">
+                <h2 class="col-12">Ваши топики:</h2>
+                <div class="col-12">
+                    <div class="row">
                         @foreach($topics as $topic)
-                            <div class="col">
-                                @include('components.topic-card', ['topic' => $topic])
-                            </div>
+                            @include('components.topic-card', ['topic' => $topic])
                         @endforeach
                     </div>
                 </div>

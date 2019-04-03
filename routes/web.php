@@ -23,7 +23,7 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/topics/create', 'TopicsController@create')->name('topics');
+    Route::get('/topics/create', 'TopicsController@create')->name('topics.create');
     Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
     Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
     Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
@@ -55,3 +55,13 @@ Route::middleware(['auth', 'admin'])->group(function() {
 // Route::get('/topic/{id}', function(Request $request) {
 //     return view('topics.single', ['id' => $request->id]);
 // });
+
+Route::Get('/categories', function() {
+    $categories = Category::all();
+    return view('categories.index')->with('categories', $categories);
+})->name('categories');
+
+Route::Get('/category/{id}', function(Request $request) {
+    $category = Category::find($request->id);
+    return view('categories.single')->with('category', $category);
+})->name('category.single');
