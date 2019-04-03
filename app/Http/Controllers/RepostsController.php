@@ -9,14 +9,13 @@ class RepostsController extends Controller
     //
     public function repost($id)
     {
-        dd('here');
         $repost = Repost::create([
             'topic_id' => $id,
             'user_id' => Auth::id(),
         ]);
-        return redirect()->back();
-        // return json_encode($repost);
         $topic = Topic::find($id);
+        $reposts = $topic->reposts->count();
+        return json_encode($topic->repost->count());
         // return json_encode(['reposts' => $topic->reposts->count()]);
     }
 

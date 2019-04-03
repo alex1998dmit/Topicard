@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Topic;
 use App\User;
 use App\Category;
+use App\Repost;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,14 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
     Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
     Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
-    Route::post('/topic/repost/{id}', 'RepostsController@repost')->name('topic.repost');
+    Route::post('/topic/repost', function(Request $request) {
+        $id = $request['id'];
+        $repost = Repost::create([
+            'topic_id' => $id,
+            'user_id' => Auth::id(),
+        ]);
+        return json_encode([]);
+    })->name('topic.repost');
     Route::post('/topics', 'TopicsController@store')->name('topic.store');
     Route::get('/home', function() {
         return redirect()->route('user', ['id' => Auth::user()->id]);

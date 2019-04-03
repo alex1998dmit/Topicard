@@ -30,12 +30,12 @@ class Topic extends Model
     public function is_reposted_by_auth()
     {
         $id = Auth::id();
-        $likers = [];
-        foreach($this->likes as $like) {
-            array_push($likers, $like->user_id);
+        $reposters = [];
+        foreach($this->reposts as $repost) {
+            array_push($reposters, $repost->user_id);
         }
 
-        if(in_array($id, $likers)) {
+        if(in_array($id, $reposters)) {
             return true;
         } else {
             return false;
@@ -55,5 +55,9 @@ class Topic extends Model
         } else {
             return false;
         }
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

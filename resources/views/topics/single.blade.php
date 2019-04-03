@@ -25,18 +25,16 @@
                 </div>
             </div>
              <div class="col-md-12">
-                    <div class="rating" id="rating">
+                    <div class="reposts" id="reposts">
                             @if($topic->is_reposted_by_auth())
-                                {{-- <a href="{{ route('topic.dislike', ['id' => $topic->id]) }}" class="btn btn-danger" id="unlike_button">Unlike <span class="badge">{{ $topic->likes->count() }}</span></a> --}}
-                                 <input type="submit" value="saved" class="btn btn-info" id="unrepost_button">{{ $topic->reposts->count() }}
+                                 <input type="submit" value="Saved" class="btn btn-info" id="unrepost_button">
                             @else
-                                <a href="{{ route('topic.repost', ['id' => $topic->id]) }}" class="btn btn-danger" id="repost_button">Saved <span class="badge">{{ $topic->likes->count() }}</span></a>
-                                {{-- <input type="submit" value="save" class="btn btn-info" id="repost_button">{{ $topic->reposts->count() }} --}}
+                                <input type="submit" value="Press to save" class="btn btn-info" id="repost_button">
                             @endif
                     </div>
             </div>
             <div class="col-md-12">
-                <b>Author: </b> {{ $topic->user }}
+                <b>Author: </b> {{ $topic->user->name }}
                 <img src="" alt="">
             </div>
         </div>
@@ -45,8 +43,9 @@
         let url_dislike = "{{ route('topic.dislike', ['id' => $topic->id]) }}";
         let url_like = "{{ route('topic.like', ['id' => $topic->id]) }}";
 
-        let url_unrepost = "{{ route('topic.unrepost', ['id' => $topic->id]) }}";
-        let url_repost = "{{ route('topic.repost', ['id' => $topic->id]) }}";
+        let test_url = "{{ route('topic.repost') }} ";
+        let token = '{{ Session::token() }}';
+        let id = '{{ $topic->id }}';
         let disable = false;
 
         $(document).ready(function(){
@@ -59,6 +58,41 @@
 
             let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+            $(document).on("click", '#repost_button', function(){
+                disable = true;
+                $.ajax({
+                    url:test_url,
+                    type: 'POST',
+                    data:{ id: id, _token: CSRF_TOKEN },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#reposts').html(`
+                            <input type="submit" value="Saved" class="btn btn-info" id="unrepost_button" />
+                        `);
+                        disable = false;
+                    },
+                });
+                return false;
+            });
+
+            $(document).on("click", '#unrepost_button', function(){
+                disable = true;
+                $.ajax({
+                    url:test_url,
+                    type: 'POST',
+                    data:{ id: id, _token: CSRF_TOKEN },
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        $('#reposts').html(`
+                            <input type="submit" value="Press to save" class="btn btn-info" id="repost_button" />
+                        `);
+                        disable = false;
+                    },
+                });
+                return false;
+            });
 
 
             $(document).on("click", '#unlike_button', function(){
@@ -103,6 +137,18 @@
             $(document).on("click", '#unlike_button', function(){
                 if(disable) {
                     $('#unlike_button').hide();
+                }
+            });
+
+            $(document).on("click", '#repost_button', function(){
+                if(disable) {
+                    $('#repost_button').hide();
+                }
+            });
+
+            $(document).on("click", '#unrepost_button', function(){
+                if(disable) {
+                    $('#unrepost_button').hide();
                 }
             });
 
