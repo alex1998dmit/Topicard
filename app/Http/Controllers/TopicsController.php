@@ -98,15 +98,16 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $topic = find($id);
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'content' => 'required',
-            'categories' => 'required'
-         ]);
+        $topic = Topic::find($request->id);
+        // $this->validate($request, [
+        //     'title' => 'required|max:255',
+        //     'content' => 'required',
+        //  ]);
+
+
 
         $topic->update([
             'title' => $request->title,
@@ -114,8 +115,11 @@ class TopicsController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        $topic->category()->attach($request->categories);
-
+        $topic->title = $request->title;
+        $topic->content = $request->content;
+        $topic->save();
+        $topic->category()->sync($request->categories);
+        return redirect()->route('topics');
     }
 
     /**
