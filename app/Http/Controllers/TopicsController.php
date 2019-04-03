@@ -86,7 +86,9 @@ class TopicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $topic = Topic::find($id);
+        $categories = $topic->category;
+        return view('topics.edit')->with('topic',$topic )->with('categories', $categories);
     }
 
     /**
@@ -99,6 +101,21 @@ class TopicsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $topic = find($id);
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'categories' => 'required'
+         ]);
+
+        $topic->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => Auth::id(),
+        ]);
+
+        $topic->category()->attach($request->categories);
+
     }
 
     /**

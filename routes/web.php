@@ -27,6 +27,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function() {
     Route::get('/topics/create', 'TopicsController@create')->name('topics');
     Route::post('/topics', 'TopicsController@store')->name('topic.store');
+    Route::get('/topics/edit/{id}', 'TopicsController@edit')->name('topic.edit');
+    Route::post('/topics/update', 'TopicsContoller@update')->name('topic.update');
 
     Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
     Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
@@ -39,6 +41,7 @@ Route::middleware(['auth'])->group(function() {
         ]);
         return json_encode([]);
     })->name('topic.save');
+
     Route::post('/topic/notsave', function(Request $request) {
         $id = $request['id'];
         $repost = Repost::where('topic_id', $id)->where('user_id', Auth::id())->first();
@@ -49,6 +52,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/home', function() {
         return redirect()->route('user', ['id' => Auth::user()->id]);
     })->name('home');
+
 });
 
 Route::get('/topic/{id}', 'TopicsController@show')->name('topic');

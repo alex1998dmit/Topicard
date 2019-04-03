@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Like;
+use App\Repost;
+use App\Topic;
 
 class UsersController extends Controller
 {
@@ -51,11 +53,15 @@ class UsersController extends Controller
         $topics = $user->topic;
         $categories = $user->category;
         $likes = Like::where('user_id', '=', $id)->get()->count();
+        $reposts = Repost::where('user_id', '=', $id)->get();
+        $reposts_id  = $reposts->pluck('topic_id')->toArray();
+        $saved_topics = Topic::whereIn('id', $reposts_id)->get();
 
         return view('users.index')->with('user', $user)
                                   ->with('topics', $topics)
                                   ->with('categories', $categories)
-                                  ->with('likes', $likes);
+                                  ->with('likes', $likes)
+                                  ->with('saved_topics', $saved_topics);
     }
 
     /**

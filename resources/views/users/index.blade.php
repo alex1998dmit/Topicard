@@ -8,7 +8,7 @@
                 <div class="w-100"></div>
                 <p>{{ $user->email }}</p>
                 <div class="w-100"></div>
-                <span class="h5">Карма: {{ $user->linkes }}</span>
+                <span class="h5">Карма: {{ $likes }}</span>
             </div>
         </div>
         <div class="col-sm-9 pl-4">
@@ -26,6 +26,15 @@
             </div>
             <div class="row topics__saved mb-3">
                 <h2 class="col">Сохраненные топики:</h2>
+                <div class="row">
+                    <div class="col">
+                        @foreach($saved_topics as $topic)
+                            <div class="col">
+                                @include('components.topic-card', ['topic' => $topic])
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="row topics__categories mb-3">
                 <h2 class="col">Избранные категории:</h2>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class repost extends Model
+class Repost extends Model
 {
     //
     protected $fillable = [
