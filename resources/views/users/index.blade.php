@@ -70,6 +70,17 @@
         <div class="col-sm-9">
             <div class="row topics__all">
                 <h2 class="col">Ваши топики:</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach ($topics as $topic)
+                            {{ $topic->title }}
+                            @foreach ($topic->category as $category)
+                                {{ $category->name }}
+                            @endforeach
+                            {{ $topic->created_at }}
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="row topics__saved">
                 <h2 class="col">Сохраненные топики:</h2>

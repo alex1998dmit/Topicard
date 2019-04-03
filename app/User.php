@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function topic()
     {
-        return $this->belongsToMany('App\Topic');
+        return $this->hasMany('App\Topic');
     }
 
     public function category()
