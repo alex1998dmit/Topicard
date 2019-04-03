@@ -46,13 +46,8 @@ Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
 Route::get('/user/{id}', 'UsersController@show')->name('user');
 
-
-
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/index', 'AdminController@index')->name('admin.index');
+    Route::get('/admin/categories', 'CategoriesController@index')->name('admin.categories');
+    Route::post('/admin/categories/store', 'CategoriesController@store')->name('categories.store');
 });
-
-
-
-
-
