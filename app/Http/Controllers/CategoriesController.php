@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -14,6 +15,8 @@ class CategoriesController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
+        return view('admin.categories.index')->with('categories', $categories);
     }
 
     /**
@@ -32,9 +35,14 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
+        // $id = Input::get('category_name');
+        $category = Categories::create([
+            'name' => 'some category',
+        ]);
+        return json_encode($category);
     }
 
     /**
@@ -46,6 +54,7 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $category = Category::find($request->id);
+        // return view()
     }
 
     /**
@@ -80,5 +89,7 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+        dd($id);
+        return json_encode([]);
     }
 }
