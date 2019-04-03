@@ -16,20 +16,23 @@ use App\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return redirect()->route('topics');
 });
 
 Auth::routes();
 
+Route::middleware(['auth'])->group(function() {
+    Route::get('/topics/create', 'TopicsController@create')->name('topics');
+    Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
+    Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
+    Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
+    Route::post('/topic/repost/{id}', 'RepostsController@repost')->name('topic.repost');
+    Route::post('/topics', 'TopicsController@store')->name('topic.store');
+});
+
 Route::get('/topic/{id}', 'TopicsController@show')->name('topic');
 Route::get('/topics', 'TopicsController@index')->name('topics');
-Route::get('/topics/create', 'TopicsController@create')->name('topics');
-Route::post('/topics', 'TopicsController@store')->name('topic.store');
-Route::post('/topic/like/{id}', 'LikesController@like')->name('topic.like');
-Route::post('/topic/dislike/{id}', 'LikesController@dislike')->name('topic.dislike');
-Route::post('/topic/repost/{id}', 'RepostsController@repost')->name('topic.repost');
-Route::post('/topic/unrepost/{id}', 'RepostsController@unrepost')->name('topic.unrepost');
 Route::get('/topics/create/search', 'SearchController@search_categories_api')->name('categories.search');
 
 Route::get('/topics/search', 'SearchController@search_api')->name('topics.search');

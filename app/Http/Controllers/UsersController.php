@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Like;
 
 class UsersController extends Controller
 {
@@ -45,7 +47,15 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        $topics = $user->topic;
+        $categories = $user->category;
+        $likes = Like::where('user_id', '=', $id)->get()->count();
+
+        return view('users.index')->with('user', $user)
+                                  ->with('topics', $topics)
+                                  ->with('categories', $categories)
+                                  ->with('likes', $likes);
     }
 
     /**
