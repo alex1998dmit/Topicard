@@ -10,13 +10,13 @@
       </div>
     </div>
     <div class="w-100">
-      <a class="topic-card__link col-auto pr-1" href="#">{{ $topic->user->name }}</a>
+      <a class="topic-card__link col-auto pr-1" href="{{ route('user', ['id' => $topic->user->id]) }}">{{ $topic->user->name }}</a>
       <span class="col-auto topic-card__date">{{ $topic->created_at }}</span>
     </div>
     <div class="w-100"></div>
     <div class="d-flex flex-wrap">
         @foreach($topic->category as $category)
-            <a href="#" class="topic-card__category topic-card__link col-auto pr-1">{{ $category->name }}</a>
+            <a href="{{ route('category.single', ['id' => $category->id]) }}" class="topic-card__category topic-card__link col-auto pr-1">{{ $category->name }}</a>
         @endforeach
     </div>
     <div class="row col-12">
