@@ -1,6 +1,6 @@
 <div class="col-md-6 col-12">
   <div class="row p-3 ml-0 my-2 align-items-center justify-content-between topic-card">
-    <a href="#" class="block-link"></a>
+    <a href="{{ route('topic', ['id' => $topic->id]) }}" class="block-link"></a>
     <div class="w-100 d-flex justify-content-between">
       <h2 class="col h3 col topic-card__title mb-1 text-restriction">{{ $topic->title }}</h2>
       <!-- guest and user id -->
