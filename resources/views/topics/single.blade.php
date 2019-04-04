@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-12 text-restriction">
-            {{ $topic->content }}
+            <pre>{{ $topic->content }}</pre>
         </div>
     </div>
     <!-- <div class="col-md-12">
