@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Category extends Model
 {
@@ -18,5 +19,21 @@ class Category extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function is_subscribed_by_id()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+
+        foreach ($this->user as $item) {
+            if($item->id === $id) {
+                return true;
+            } else{
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 }

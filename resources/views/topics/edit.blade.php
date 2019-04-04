@@ -44,6 +44,11 @@
             let added_categories = [];
 
             $(document).on('keyup', '#categories_search', function(){
+                
+
+            });
+
+            $(document).on('keyup', '#categories_search', function(){
                 var query = $(this).val();
                 $.ajax({
                     url:url,

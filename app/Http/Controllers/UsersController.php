@@ -50,6 +50,11 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
+        if(!$user) {
+            abort(404);
+        }
+
         $topics = $user->topic;
         $categories = $user->category;
         $likes = Like::where('user_id', '=', $id)->get()->count();

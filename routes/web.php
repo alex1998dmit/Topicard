@@ -54,14 +54,18 @@ Route::middleware(['auth'])->group(function() {
     })->name('home');
 
     Route::post('/catageories/subscribe', function(Request $request) {
-        $topic = Topic::find($request->id);
+        $category = Category::find($request['id']);
         $user = User::find(Auth::id());
-        $user->topic()->attach($topic);
-        dd('fasfa');
-        // $topic->user()->attach(Auth::id());
-
-        // return json_encode(['id' => $request['id']]);
+        $category->user()->attach(Auth::id());
+        return json_encode($category);
     })->name('category.subscribe');
+
+    Route::post('/catageories/unsubscribe', function(Request $request) {
+        $category = Category::find($request['id']);
+        $user = User::find(Auth::id());
+        $category->user()->detach(Auth::id());
+        return json_encode(['id' => $category]);
+    })->name('category.unsubscribe');
 
 });
 
@@ -76,6 +80,11 @@ Route::get('/categories', 'CategoriesContoller@index')->name('categories');
 Route::get('/category/{id}', 'CategoriesController@show')->name('category');
 
 Route::get('/user/{id}', 'UsersController@show')->name('user');
+
+Route::get('/search/categories', function(Request $request) {
+    $name = $request['name'];
+    return json_encode(['id' => $name]);
+})->name('search.categories');
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/index', 'AdminController@index')->name('admin.index');
@@ -93,16 +102,6 @@ Route::middleware(['auth', 'admin'])->group(function() {
     })->name('categories.store');
 });
 
-// Route::get('/topic/{id}', function(Request $request) {
-//     return view('topics.single', ['id' => $request->id]);
-// });
+Route::get('/categories', 'CategoriesController@index')->name('categories');
 
-Route::Get('/categories', function() {
-    $categories = Category::all();
-    return view('categories.index')->with('categories', $categories);
-})->name('categories');
-
-Route::Get('/category/{id}', function(Request $request) {
-    $category = Category::find($request->id);
-    return view('categories.single')->with('category', $category);
-})->name('category.single');
+Route::get('/category/{id}', 'CategoriesController@show')->name('category.single');

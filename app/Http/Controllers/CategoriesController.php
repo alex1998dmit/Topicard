@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     {
         //
         $categories = Category::all();
-        return view('admin.categories.index')->with('categories', $categories);
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -51,9 +51,10 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         $category = Category::find($request->id);
+        return view('categories.single')->with('category', $category);
         // return view()
     }
 

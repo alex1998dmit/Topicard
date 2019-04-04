@@ -8,21 +8,19 @@
       <div class="row justify-content-between">
         <h3 class="col text-restriction">{{ $category->name }}</h3>
         <div class="col-auto">
-            <form action="{{ route('category.subscribe') }}" method="post">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="cat_id" value="{{ $category->id }}">
-                    <button class="btn btn-primary block-category__btn subscribe_button"  value="">Подписаться</button>
-                    {{-- <a class="btn btn-primary block-category__btn subscribe_button" data-id="{{ $category->id }}" id="subscribe_button" href="#">Подписаться</a> --}}
-            </form>
-        {{-- <a class="btn btn-primary block-category__btn subscribe_button" data-id="{{ $category->id }}" id="subscribe_button" href="#">Подписаться</a> --}}
+            @if($category->is_subscribed_by_id())
+                <input class="btn btn-success block-category__btn unsubscribe_button" data-id="{{ $category->id }}" value="Отписаться">
+            @else
+                <input class="btn btn-primary block-category__btn subscribe_button" data-id="{{ $category->id }}" value="Подписаться">
+            @endif
           <!-- OR btn-success -->
         </div>
       </div>
-      <span>Лайков:</span>
+      {{-- <span>Лайков:</span> --}}
       <div class="w-100"></div>
       <span>Топиков: {{ $category->topic->count() }}</span>
       <div class="w-100"></div>
-      <span>Подписчков:</span>
+      <span>Подписчков: {{ $category->user->count() }}</span>
     </div>
   </div>
 </div>

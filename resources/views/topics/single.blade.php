@@ -30,7 +30,7 @@
         <div class="w-100"></div>
         <div class="row col ml-0">
             @foreach($topic->category as $category)
-            <img src="{{ asset('uploads/avatars/default.jpg') }}" alt="category" width="20px" height="20px">
+            <img src="{{ asset('uploads/categories_avatars/' . $category->avatar) }}" alt="category" width="20px" height="20px">
             <a href="{{ route('category.single', ['id' => $category->id]) }}" class="topic-card__category topic-card__link col-auto pl-1 pr-2">{{ $category->name }}</a>
             @endforeach
         </div>

@@ -32,7 +32,7 @@
                                         <td>{{ $category->id }}</td>
                                         <td> {{ $category->name }}</td>
                                         <td><img class="profile__avatar rounded" src="{{ asset('uploads/categories_avatars/'. $category->avatar)}}" name="avatar_img" class="avatar_img" alt="avatar" style="widht:30px; height:30px" /></td>
-                                        <td> {{ $category->user->count() }}</td>
+                                             <td> {{ $category->user->count() }}</td>
                                     </tr>
                                   @endforeach
                                 </tbody>
@@ -75,14 +75,16 @@
                         success: function(data) {
                             console.log(data);
                             let img_url = "{{ asset('uploads/categories_avatars/') }}" + "/" + data.avatar;
-                            $('#categories_list').append(`
+                            if(data){
+                                $('#categories_list').append(`
                                 <tr>
                                     <td>${data.id}</td>
                                     <td>${data.name}</td>
                                     <td><img class="profile__avatar rounded" src="${img_url}" name="avatar_img" class="avatar_img" alt="avatar" style="widht:30px; height:30px" /></td>
-                                    <td>{{ $category->user->count() }}</td>
                                 </tr>
                             `);
+                            }
+
                         },
                     });
                 });
