@@ -9,9 +9,9 @@
         <h3 class="col text-restriction">{{ $category->name }}</h3>
         <div class="col-auto">
             @if($category->is_subscribed_by_id())
-                <input class="btn btn-success block-category__btn unsubscribe_button" data-id="{{ $category->id }}" value="Отписаться">
+                <input class="btn btn-success block-category__btn unsubscribe_button" type="button" data-id="{{ $category->id }}" value="Отписаться">
             @else
-                <input class="btn btn-primary block-category__btn subscribe_button" data-id="{{ $category->id }}" value="Подписаться">
+                <input class="btn btn-primary block-category__btn subscribe_button" type="button" data-id="{{ $category->id }}" value="Подписаться">
             @endif
           <!-- OR btn-success -->
         </div>

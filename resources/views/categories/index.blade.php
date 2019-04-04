@@ -42,7 +42,7 @@ $(document).ready(function(){
             data:{ id: id, _token: CSRF_TOKEN },
             dataType: 'json',
             success: function(data) {
-                $(`input[data-id=${data.id}]`).replaceWith(`<input class="btn btn-success block-category__btn unsubscribe_button" data-id="${data.id}" value="Отписаться">`)
+                $(`input[data-id=${data.id}]`).replaceWith(`<input class="btn btn-success block-category__btn unsubscribe_button" type="submit" data-id="${data.id}" value="Отписаться">`)
             },
         });
     });
@@ -56,7 +56,7 @@ $(document).ready(function(){
             data:{ id: id, _token: CSRF_TOKEN },
             dataType: 'json',
             success: function(data) {
-                $(`input[data-id=${id}]`).replaceWith(`<input class="btn btn-info block-category__btn subscribe_button" data-id="{{ $category->id }}" value="Подписаться">`)
+                $(`input[data-id=${id}]`).replaceWith(`<input class="btn btn-info block-category__btn subscribe_button" data-id="{{ $category->id }}" type="submit" value="Подписаться">`)
             },
         });
     });

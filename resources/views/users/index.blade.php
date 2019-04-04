@@ -28,24 +28,22 @@
             </div>
             <div class="row topics__saved mb-3">
                 <h2 class="col">Сохраненные топики:</h2>
-                <div class="row">
-                    <div class="col">
+                <div class="col-12">
+                    <div class="row">
                         @foreach($saved_topics as $topic)
-                            <div class="col">
-                                @include('components.topic-card', ['topic' => $topic])
-                            </div>
+                            @include('components.topic-card', ['topic' => $topic])
                         @endforeach
                     </div>
                 </div>
             </div>
             <div class="row topics__categories mb-3">
                 <h2 class="col">Избранные категории:</h2>
-                <div class="row">
-                    {{-- @foreach($user->category as $category)
-                        <div class="col">
+                <div class="col-12">
+                    <div class="row">
+                        @foreach($user->category as $category)
                             @include('components.block-category', ['category' => $category])
-                        </div>
-                    @endforeach --}}
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
