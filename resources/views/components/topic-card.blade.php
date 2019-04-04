@@ -3,11 +3,9 @@
     <a href="{{ route('topic', ['id' => $topic->id]) }}" class="block-link"></a>
     <div class="w-100 d-flex justify-content-between">
       <h2 class="col h3 col topic-card__title mb-1 text-restriction">{{ $topic->title }}</h2>
-      <!-- guest and user id -->
       <div class="col-auto justify-self-end topic-card__buttons">
         @if(Auth::id() === $topic->user->id)
-            <a class="btn btn-info topic-card__btn topic-card__edit" href="{{ route('topic.edit', ['id' => $topic->id ])}}">Редактировать</a>
-            <a class="btn btn-danger topic-card__btn topic-card__delete" data-id={{ $topic->id }} href="#" id="delete_topic">Удалить</a>
+            <a href="#" class="btn btn-success rounded-circle topic-card__btn">3</a>
         @endif
       </div>
     </div>
@@ -29,6 +27,12 @@
     </div>
     <div class="col-12 text-restriction">
         {{ $topic->content }}
+    </div>
+    <div class="col-auto justify-self-end topic-card__buttons mt-3">
+      @if(Auth::id() === $topic->user->id)
+        <a class="btn btn-info topic-card__btn topic-card__edit" href="{{ route('topic.edit', ['id' => $topic->id ])}}">Редактировать</a>
+        <a class="btn btn-danger topic-card__btn topic-card__delete" data-id={{ $topic->id }} href="#" id="delete_topic">Удалить</a>
+      @endif
     </div>
   </div>
 </div>
