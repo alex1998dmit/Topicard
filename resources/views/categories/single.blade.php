@@ -9,9 +9,11 @@
         <input class="btn btn-primary subscribe_button" type="button" data-id="{{ $category->id }}" value="Подписаться">
       @endif
   </div>
-  <div class="row">
+  <div class="col-12">
+    <div class="row">
     @foreach($category->topic as $topic)
         @include('components.topic-card', ['topic' => $topic])
     @endforeach
+    </div>
   </div>
 @endsection
