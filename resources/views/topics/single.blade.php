@@ -79,6 +79,10 @@
             <img src="" alt="">
         </div>
     </div> -->
+
+    <div class="comments-block" style="width:100%">
+            @include('components.disqus')
+    </div>
 </div>
 <script>
     console.log($('#repost_button'));
