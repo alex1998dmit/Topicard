@@ -60,6 +60,7 @@
             let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
             $(document).on("click", '#repost_button', function(){
+
                 disable = true;
                 $.ajax({
                     url:url_save,

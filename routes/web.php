@@ -53,6 +53,16 @@ Route::middleware(['auth'])->group(function() {
         return redirect()->route('user', ['id' => Auth::user()->id]);
     })->name('home');
 
+    Route::post('/catageories/subscribe', function(Request $request) {
+        $topic = Topic::find($request->id);
+        $user = User::find(Auth::id());
+        $user->topic()->attach($topic);
+        dd('fasfa');
+        // $topic->user()->attach(Auth::id());
+
+        // return json_encode(['id' => $request['id']]);
+    })->name('category.subscribe');
+
 });
 
 Route::get('/topic/{id}', 'TopicsController@show')->name('topic');
