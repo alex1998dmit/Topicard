@@ -19,6 +19,12 @@ class CategoriesController extends Controller
         return view('categories.index')->with('categories', $categories);
     }
 
+    public function admin_index()
+    {
+        $categories = Category::all();
+        return view('admin.categories.index')->with('categories', $categories);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

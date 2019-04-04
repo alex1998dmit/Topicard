@@ -88,7 +88,7 @@ Route::get('/search/categories', function(Request $request) {
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin/index', 'AdminController@index')->name('admin.index');
-    Route::get('/admin/categories', 'CategoriesController@index')->name('admin.categories');
+    Route::get('/admin/categories', 'CategoriesController@admin_index')->name('admin.categories');
     Route::post('/admin/categories/store', function(Request $request) {
         $name = Input::get('name');
         $avatar = Input::file('image');
