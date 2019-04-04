@@ -14,9 +14,10 @@
       <span class="col-auto topic-card__date">{{ $topic->created_at }}</span>
     </div>
     <div class="w-100"></div>
-    <div class="d-flex flex-wrap">
+    <div class="row col ml-0">
         @foreach($topic->category as $category)
-            <a href="{{ route('category.single', ['id' => $category->id]) }}" class="topic-card__category topic-card__link col-auto pr-1">{{ $category->name }}</a>
+          <img src="{{ asset('uploads/avatars/default.jpg') }}" alt="category" width="20px" height="20px">
+          <a href="{{ route('category.single', ['id' => $category->id]) }}" class="topic-card__category topic-card__link col-auto pl-1 pr-2">{{ $category->name }}</a>
         @endforeach
     </div>
     <div class="row col-12">
