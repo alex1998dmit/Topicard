@@ -9,8 +9,10 @@
         </div>
     </div>
     <div class="row">
-    @foreach($topics as $topic)
-        @include('components.topic-card', ['topic' => $topic])
+    @foreach($categories as $category)
+        @foreach ($category->topic as $topic)
+            @include('components.topic-card', ['topic' => $topic])
+        @endforeach
     @endforeach
     </div>
 @endsection

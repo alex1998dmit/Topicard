@@ -24,22 +24,10 @@ class TopicsController extends Controller
         if(Auth::user()) {
             $user = User::find(Auth::id());
             $categories = $user->category;
-            $topics = [];
-            foreach ($categories as $key => $category) {
-                array_push($topics, $category->topic);
-            }
-            dd($topics);
-
-            $category = Category::find(1);
-            dd($category->topic);
+        } else {
             $categories = Category::all();
-            dd($categories->topic);
-            $topics = $categories->topic();
-            dd($topics);
         }
-        // $topics = Topic::all();
-        // $categories =
-        // return view('topics.index')->with('topics', $topics);
+        return view('topics.index')->with('categories', $categories);
     }
 
     /**
