@@ -4,9 +4,7 @@
     <div class="w-100 d-flex justify-content-between">
       <h2 class="col h3 col topic-card__title mb-1 text-restriction">{{ $topic->title }}</h2>
       <div class="col-auto justify-self-end topic-card__buttons">
-        @if(Auth::id() === $topic->user->id)
-            <a href="#" class="btn btn-success rounded-circle topic-card__btn">3</a>
-        @endif
+        <a href="#" class="btn btn-success rounded-circle">{{  $topic->likes->count() }}</a>
       </div>
     </div>
     <div class="w-100">
@@ -31,7 +29,7 @@
     <div class="col-auto justify-self-end topic-card__buttons mt-3">
       @if(Auth::id() === $topic->user->id)
         <a class="btn btn-info topic-card__btn topic-card__edit" href="{{ route('topic.edit', ['id' => $topic->id ])}}">Редактировать</a>
-        <a class="btn btn-danger topic-card__btn topic-card__delete" data-id={{ $topic->id }} href="#" id="delete_topic">Удалить</a>
+        {{-- <a class="btn btn-danger topic-card__btn topic-card__delete" data-id={{ $topic->id }} href="#" id="delete_topic">Удалить</a> --}}
       @endif
     </div>
   </div>

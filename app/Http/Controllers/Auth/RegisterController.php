@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Image;
+use App\Category;
 
 class RegisterController extends Controller
 {
@@ -73,11 +74,13 @@ class RegisterController extends Controller
             $filename = 'default.jpg';
         }
 
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'avatar' => $filename,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return $user;
     }
 }

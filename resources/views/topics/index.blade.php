@@ -10,8 +10,7 @@
     </div>
     <div class="row">
     @foreach($categories as $category)
-
-        @foreach ($category->topic->unique() as $topic)
+        @foreach($category->topic->reverse() as $topic)
             @include('components.topic-card', ['topic' => $topic])
         @endforeach
     @endforeach

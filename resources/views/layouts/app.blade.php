@@ -7,8 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>Topicard</title>
     <!-- Scripts -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -28,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Topicard
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,10 +40,12 @@
                             <a href="{{ route('topics') }}" class="nav-link">Topics</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user', ['id' => Auth::id()]) }}" class="nav-link">Profile</a>
+                            <a href="{{ route('categories') }}" class="nav-link">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('categories') }}" class="nav-link">Categories</a>
+                            @if(Auth::user())
+                                <a href="{{ route('user', ['id' => Auth::id()]) }}" class="nav-link">Profile</a>
+                            @endif
                         </li>
                     </ul>
 

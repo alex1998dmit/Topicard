@@ -48,4 +48,79 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+
+   $.ajaxSetup({
+    headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    let url_subscribe = "{{ route('category.subscribe') }}";
+    let url_unsubscribe = "{{ route('category.unsubscribe') }}";
+    let url_search_category = "{{ route('search.categories')}}";
+
+
+    $(document).on("click", ".subscribe_button", function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            url:url_subscribe,
+            type: 'POST',
+            data:{ id: id, _token: CSRF_TOKEN },
+            dataType: 'json',
+            success: function(data) {
+                $(`input[data-id=${data.id}]`).replaceWith(`<input class="btn btn-success block-category__btn unsubscribe_button" type="submit" data-id="${data.id}" value="Отписаться">`)
+            },
+        });
+    });
+
+    $(document).on("click", ".unsubscribe_button", function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            url:url_unsubscribe,
+            type: 'POST',
+            data:{ id: id, _token: CSRF_TOKEN },
+            dataType: 'json',
+            success: function(data) {
+                $(`input[data-id=${id}]`).replaceWith(`<input class="btn btn-info block-category__btn subscribe_button" data-id=${id} type="submit" value="Подписаться">`)
+            },
+        });
+    });
+
+    $(document).on("keyup", "#find_category", function(e) {
+        e.preventDefault();
+        let url_search_categories = "{{  route('categories.search') }}";
+        let name = $('#find_category').val();
+        $.ajax({
+            url:url_search_categories,
+            type: 'GET',
+            data:{ name: name },
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                let arrayResult = data.map(el => el.name);
+                console.log(arrayResult);
+                if(arrayResult.length) {
+                    $('#find_category').autocomplete({
+                        source: arrayResult,
+                        select: function( event, ui ) {
+                            let selected_tag = ui.item.value;
+                            let selected = data.filter(el =>  {return el.name === selected_tag });
+                            let selected_id = selected[0].id;
+                            window.location.replace(`http://localhost:8888/topicard/public/category/${selected_id}`);
+                        },
+                    })
+                }
+            },
+        });
+    });
+
+
+
+</script>
 @endsection

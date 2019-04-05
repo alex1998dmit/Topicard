@@ -108,8 +108,5 @@ class SearchController extends Controller
         //
     }
 
-    function action(Request $request)
-    {
-        return 123;
-    }
+
 }

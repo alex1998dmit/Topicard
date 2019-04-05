@@ -28,12 +28,11 @@ class Category extends Model
         foreach ($this->user as $item) {
             if($item->id === $id) {
                 return true;
-            } else{
-                return false;
             }
         }
         return false;
     }
+
 
 
 }
